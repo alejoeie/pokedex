@@ -127,7 +127,7 @@ class PokemonDetails extends Component {
       const chartConfigs = {
         type: 'column2d',
         width: "75%",
-        height: "300",
+        height: "300%",
         borderRadius: 15,
         dataFormat: 'json',
         dataSource: {
