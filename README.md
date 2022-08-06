@@ -8,7 +8,7 @@ in components and containers.
 Data was returned in this way by using axios library. 
 
 `{
-  "abilities": [ \
+  "abilities": [ 
     {
       "ability": {
         "name": "limber",
