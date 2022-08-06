@@ -15,6 +15,7 @@ ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 const styles = {
     pokedexContainer: {
+      width: "100%",
       height: '84vh',
       backgroundColor: 'black',
       color: "white",
@@ -25,11 +26,11 @@ const styles = {
     },
     textTitle: {
       textTransform: "upperCase",
-      fontFamily: 'Lato'
+      width:"100%",
     },
     pokemonImage:{
-      width: "200px",
-      heigth: "200px"
+      width: "25%",
+      alignSelf: "center"
     },
     pokemonInfoContainer: {
       bottom: 60,
@@ -41,17 +42,33 @@ const styles = {
       width: "95%"
     },
     favorite:{
-      height: 50,
-      width: 50,
-      marginTop: 15
+      padding: 20,
+      width: 20,
+      margin: "10px"
+
     },
     text:{
-      fontSize: "30px",
-      
+      fontSize: "10",
+      padding: 20
     },
     stats:{
-      marginLeft: "34%",
-      bottom: 60
+      width: "100%",
+      position: "relative",
+
+    },
+    favoriteSelector: {
+      justifyContent: "center",
+      flexDirection: "row-reverse",
+      alignItems: "center",
+      
+    },
+    dataGrid: {
+      width: "100%",
+      gap: "10px",
+      justifyContent: "center",
+      display: "flex",
+      padding: 40,
+      marginTop: "5px"
     }
 }
 const theme = createTheme();
@@ -109,19 +126,27 @@ class PokemonDetails extends Component {
 
       const chartConfigs = {
         type: 'column2d',
-        width: 600,
-        height: 300,
+        width: "75%",
+        height: "300",
         borderRadius: 15,
         dataFormat: 'json',
         dataSource: {
           "chart": {
             "caption": "Pokemon Stats",
+            "renderAt": `${classes.stats}`,
             "subCaption": "Each measurement unit must be relative to its spec.",
             "xAxisName": "Stats",
             "yAxisName": "Value",
             "theme": "fusion",
-            "showBorder": "1",
-            // "bgColor": "EEEEEE,CCCCCC",
+            "canvasbgColor": "#000000",
+            "canvasbgAlpha": "100",
+            "canvasBgRatio": "40,60",
+            "canvasBgAngle": "0",
+            "bgColor": "#000000",
+            "chartLeftMargin": "40",
+            "chartTopMargin": "40",
+            "chartRightMargin": "40",
+            "chartBottomMargin": "40"
             // "bgratio": "60,40",
             // "bgAlpha": "70,80",
             // "bgAngle": "180"
@@ -133,22 +158,34 @@ class PokemonDetails extends Component {
         <ThemeProvider theme={theme}>
         <Box>
           <Box className={classes.pokedexContainer}>
-            <Typography className={classes.textTitle} variant='h1'>
+            <Typography className={classes.textTitle} variant='h2'>
               {name}
             </Typography>
-
-            <img className={classes.pokemonImage} src={sprites.front_default}/>
-            <Box className={classes.pokemonInfoContainer}>
-            <Grid container className={classes.stats}>
-                <Grid item md={2} sm={2} xs={2}>
-                  <ReactFC {...chartConfigs} />
-                </Grid>
+            <Grid container className={classes.dataGrid}>
+            
+              <Grid item md={2} sm={2} xs={2}>
+                <img  src={sprites.front_default}/>
               </Grid>
+              <Grid item md={2} sm={2} xs={2}>
+                <img  src={sprites.back_default}/>
+              </Grid>
+              <Grid item md={2} sm={2} xs={2}>
+                <img  src={sprites.back_shiny}/>
+              </Grid>
+              <Grid item md={2} sm={2} xs={2}>
+                <img  src={sprites.front_shiny}/>
+              </Grid>
+            </Grid>
+
+            
+            
+            <Box className={classes.pokemonInfoContainer}>
+            <ReactFC {...chartConfigs} />
               <hr className={classes.separate}/>
               <Grid container>
-                <Grid item md={2} sm={2} xs={2}>
+                <Grid item md={2} sm={1} xs={1} className={classes.favoriteSelector}>
                   <Button className={classes.favorite} onClick={()=>{this.props.toggleFavorite(pokemon)}}>
-                    <FavoriteIcon style={{color: this.favoriteChecker(pokemon) ? "red" : "white", fontSize: 50}}/>
+                    <FavoriteIcon style={{color: this.favoriteChecker(pokemon) ? "red" : "white", fontSize: 20}}/>
                   </Button>
 
                 </Grid>
@@ -174,7 +211,7 @@ class PokemonDetails extends Component {
                     {types.map((pokemonType)=>{
                       const {name} = pokemonType.type
                       return(
-                        <Grid item md={1} sm={2} xs={2} key={name}>
+                        <Grid item md={2} sm={2} xs={2} key={name}>
                           <Typography className={classes.text}>Type
                             <br />
                             {name}

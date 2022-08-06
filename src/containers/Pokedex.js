@@ -36,6 +36,9 @@ function Pokedex() {
   }, [])
 
   console.log(pokemonData);
+    // pokemonData.map((item) => {
+    //   console.log(item.name)
+    // })
   return (
     <Box >
       {pokemonData ? (
