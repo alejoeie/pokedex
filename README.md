@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Pokedex Web App 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is intended to learn frontend development skills using Material-Ui and React Styling. 
+
+Backend was used by PokeAPI which returns JSON format data and it is very useful for rendering data 
+in components and containers. 
+
+We studied React hooks, redux and its very amazing utilities for Javascript functional programming.
+
+You can actually visit the current version for the project visiting this link:
+(https://tourmaline-kulfi-0b5928.netlify.app)
 
 ## Available Scripts
 
